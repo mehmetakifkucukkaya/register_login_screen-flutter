@@ -80,7 +80,7 @@ class WelcomePage extends StatelessWidget {
                   // Kayıt Ol butonu
                   OutlinedButton(
                     onPressed: () {
-                      // Navigator.pushNamed(context, '/register');
+                      Navigator.pushNamed(context, '/register');
                     },
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(

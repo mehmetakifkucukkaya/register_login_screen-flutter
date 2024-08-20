@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:login_signup/core/constants/app_strings.dart';
+import 'package:login_signup/pages/login_page.dart';
 import 'package:login_signup/widgets/auth_form.dart';
 import 'package:login_signup/widgets/backgrond_image.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _formKeyLogin = GlobalKey<FormState>();
-  bool _isRememberMeChecked = false;
+class _RegisterPageState extends State<RegisterPage> {
+  final _formKeyRegister = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +36,10 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(
                 flex: 2,
                 child: AuthForm(
-                  formKey: _formKeyLogin,
-                  button: _buildLoginButton(),
-                  text: _buildRegisterRedirectText(context),
-                  title: 'Giriş Yapın',
+                  formKey: _formKeyRegister,
+                  button: _buildRegisterButton(),
+                  text: _buildLoginRedirectText(context),
+                  title: 'Kayıt Olun',
                 ),
               ),
             ],
@@ -49,45 +49,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildRememberMeAndForgotPassword() {
-    return Row(
-      children: [
-        Checkbox(
-          value: _isRememberMeChecked,
-          onChanged: (bool? value) {
-            setState(() {
-              _isRememberMeChecked = value ?? false;
-            });
-          },
-        ),
-        Text(
-          AppStrings().rememberMe,
-          style: TextStyle(
-            color: Colors.grey[700],
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const Spacer(),
-        TextButton(
-          style: TextButton.styleFrom(foregroundColor: Colors.green),
-          onPressed: () {},
-          child: Text(
-            AppStrings().forgetPass,
-            style: const TextStyle(fontSize: 16),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLoginButton() {
+  Widget _buildRegisterButton() {
     return ElevatedButton(
       onPressed: () {
         // Form doğrulama işlemimiz
-        if (_formKeyLogin.currentState?.validate() ?? false) {
+        if (_formKeyRegister.currentState?.validate() ?? false) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Giriş başarılı!')),
+            const SnackBar(content: Text('Kayıt başarılı!')),
           );
         }
       },
@@ -102,21 +70,21 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       child: Text(
-        AppStrings().login,
+        AppStrings().register,
         style: const TextStyle(fontSize: 18),
       ),
     );
   }
 }
 
-Widget _buildRegisterRedirectText(BuildContext context) {
+Widget _buildLoginRedirectText(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Henüz Hesabınız yok mu?",
+          "Hesabınız zaten var mı?",
           style: TextStyle(
             color: Colors.grey[700],
             fontSize: 16,
@@ -124,10 +92,15 @@ Widget _buildRegisterRedirectText(BuildContext context) {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/register');
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LoginPage(),
+              ),
+            );
           },
           child: Text(
-            AppStrings().register,
+            AppStrings().login,
             style: const TextStyle(
               color: Colors.green,
               fontSize: 16,
