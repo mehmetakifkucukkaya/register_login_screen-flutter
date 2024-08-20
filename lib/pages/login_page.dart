@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:login_signup/core/constants/app_strings.dart';
 import 'package:login_signup/widgets/auth_form.dart';
 import 'package:login_signup/widgets/backgrond_image.dart';
@@ -55,22 +56,12 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
         ),
-        Text(
-          AppStrings().rememberMe,
-          style: TextStyle(
-            color: Colors.grey[700],
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        _buildText(AppStrings().rememberMe, fontWeight: FontWeight.w600),
         const Spacer(),
         TextButton(
           style: TextButton.styleFrom(foregroundColor: Colors.green),
           onPressed: () {},
-          child: Text(
-            AppStrings().forgetPass,
-            style: const TextStyle(fontSize: 16),
-          ),
+          child: _buildText(AppStrings().forgetPass),
         ),
       ],
     );
@@ -79,7 +70,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildLoginButton() {
     return ElevatedButton(
       onPressed: () {
-        // Form doğrulama işlemimisz
         if (_formKeyLogin.currentState?.validate() ?? false) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Giriş başarılı!')),
@@ -93,39 +83,56 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      child: Text(
-        AppStrings().login,
-        style: const TextStyle(fontSize: 18),
-      ),
+      child: _buildText(AppStrings().login, fontSize: 18),
     );
   }
 
   Widget _buildRegisterRedirectText() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
         children: [
-          Text(
-            "Henüz Hesabınız yok mu?",
-            style: TextStyle(
-              color: Colors.grey[700],
-              fontSize: 16,
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/register');
-            },
-            child: Text(
-              AppStrings().register,
-              style: const TextStyle(
-                color: Colors.green,
-                fontSize: 16,
+          _buildOtherLogins(),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildText("Henüz Hesabınız yok mu?"),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/register');
+                },
+                child: _buildText(AppStrings().register, color: Colors.green),
               ),
-            ),
+            ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildOtherLogins() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Brand(Brands.facebook, size: 40),
+          Brand(Brands.google, size: 40),
+          Brand(Brands.twitter, size: 40),
+        ],
+      ),
+    );
+  }
+
+  Text _buildText(String text,
+      {double fontSize = 16, Color? color, FontWeight? fontWeight}) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: color ?? Colors.grey[700],
+        fontSize: fontSize,
+        fontWeight: fontWeight,
       ),
     );
   }
