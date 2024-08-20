@@ -1,16 +1,58 @@
-# login_signup
+# Login ve SignUp Projesi
 
-A new Flutter project.
+Login ve SignUp sayfalarından oluşan Flutter projesi
 
-## Getting Started
+- [Uygulama Görüntüsü](#uygulama_goruntusu)
+- [Kurulum](#kurulum)
+- [Proje Dosya Yapısı](#proje-dosya-yapısı)
+- [Kullanılan Paketler](#kullanılan-paketler)
 
-This project is a starting point for a Flutter application.
+<br>
 
-A few resources to get you started if this is your first Flutter project:
+# Uygulama Görüntüsü
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Giriş Ekranı](project_images/preview.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<br>
+
+## Kurulum
+
+Bu projeye başlamak için aşağıdaki adımları izleyebilirsiniz:
+
+1. Depoyu klonlayın:
+   ```sh
+   git clone https://github.com/mehmetakifkucukkaya/register_login_screen-flutter.git
+   ```
+2. Proje dizinine gidin:
+   ```sh
+   cd login_signup
+   ```
+3. Bağımlılıkları yükleyin:
+   ```sh
+   flutter pub get
+   ```
+4. Uygulamayı çalıştırın:
+   ```sh
+   flutter run
+   ```
+   <br>
+
+## Proje Dosya Yapısı
+
+| Klasör/Dosya    | Açıklama                                        |
+| --------------- | ----------------------------------------------- |
+| `lib`           | **Ana kaynak kod klasörü**                      |
+| │── `core`      | **Uygulamada kullanılan temel bileşenler**      |
+| │├── constants  | Uygulamada kullanılan sabit değerler            |
+| │└── validators | Form doğrulayıcılarını içeren klasör            |
+| └── `pages`     | Sayfaların tasarım kodları                      |
+| ├── `widgets`   | Sayfalarda kullanılan özelleştirilmiş widgetlar |
+
+<br>
+
+## Kullanılan Paketler
+
+| Paket Adı    | Açıklama          |
+| ------------ | ----------------- |
+| `lottie`     | Animasyonlar için |
+| `icons_plus` | İcon paketi       |
