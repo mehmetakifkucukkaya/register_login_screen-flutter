@@ -27,23 +27,18 @@ class _LoginPageState extends State<LoginPage> {
           const BackgrondImage(),
           Column(
             children: [
-              const Expanded(
-                flex: 1,
-                child: SizedBox(
-                  height: 10,
-                ),
-              ),
+              const Spacer(),
               Expanded(
                 flex: 2,
                 child: AuthForm(
                   formKey: _formKeyLogin,
                   button: _buildLoginButton(),
-                  text: _buildRegisterRedirectText(context),
+                  text: _buildRegisterRedirectText(),
                   title: 'Giriş Yapın',
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -84,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildLoginButton() {
     return ElevatedButton(
       onPressed: () {
-        // Form doğrulama işlemimiz
+        // Form doğrulama işlemimisz
         if (_formKeyLogin.currentState?.validate() ?? false) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Giriş başarılı!')),
@@ -92,10 +87,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 15,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
         foregroundColor: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -107,34 +99,34 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
 
-Widget _buildRegisterRedirectText(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Henüz Hesabınız yok mu?",
-          style: TextStyle(
-            color: Colors.grey[700],
-            fontSize: 16,
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/register');
-          },
-          child: Text(
-            AppStrings().register,
-            style: const TextStyle(
-              color: Colors.green,
+  Widget _buildRegisterRedirectText() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Henüz Hesabınız yok mu?",
+            style: TextStyle(
+              color: Colors.grey[700],
               fontSize: 16,
             ),
           ),
-        ),
-      ],
-    ),
-  );
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/register');
+            },
+            child: Text(
+              AppStrings().register,
+              style: const TextStyle(
+                color: Colors.green,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

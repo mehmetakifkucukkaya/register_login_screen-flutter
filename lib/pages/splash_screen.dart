@@ -15,16 +15,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    startTimer();
+    _startSplashTimer();
   }
 
-  startTimer() {
-    var duration = const Duration(seconds: 4);
-
-    return Timer(duration, navigateLoginPage);
+  void _startSplashTimer() {
+    const duration = Duration(seconds: 4);
+    Timer(duration, _navigateToWelcomePage);
   }
 
-  navigateLoginPage() {
+  void _navigateToWelcomePage() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -37,9 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          child: Lottie.asset('assets/animations/splash_lottie.json'),
-        ),
+        child: Lottie.asset('assets/animations/splash_lottie.json'),
       ),
     );
   }

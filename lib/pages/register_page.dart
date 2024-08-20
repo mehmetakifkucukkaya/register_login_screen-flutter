@@ -27,23 +27,18 @@ class _RegisterPageState extends State<RegisterPage> {
           const BackgrondImage(),
           Column(
             children: [
-              const Expanded(
-                flex: 1,
-                child: SizedBox(
-                  height: 10,
-                ),
-              ),
+              const Spacer(),
               Expanded(
                 flex: 2,
                 child: AuthForm(
                   formKey: _formKeyRegister,
                   button: _buildRegisterButton(),
-                  text: _buildLoginRedirectText(context),
+                  text: _buildLoginRedirectText(),
                   title: 'Kayıt Olun',
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -60,10 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
         }
       },
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 15,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
         foregroundColor: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -75,39 +67,39 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-}
 
-Widget _buildLoginRedirectText(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Hesabınız zaten var mı?",
-          style: TextStyle(
-            color: Colors.grey[700],
-            fontSize: 16,
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const LoginPage(),
-              ),
-            );
-          },
-          child: Text(
-            AppStrings().login,
-            style: const TextStyle(
-              color: Colors.green,
+  Widget _buildLoginRedirectText() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Hesabınız zaten var mı?",
+            style: TextStyle(
+              color: Colors.grey[700],
               fontSize: 16,
             ),
           ),
-        ),
-      ],
-    ),
-  );
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ),
+              );
+            },
+            child: Text(
+              AppStrings().login,
+              style: const TextStyle(
+                color: Colors.green,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

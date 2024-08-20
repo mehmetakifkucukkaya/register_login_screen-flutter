@@ -50,55 +50,27 @@ class WelcomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 40),
 
-                  //* Butonlar
-
-                  // Giriş Yap  butonu
-                  ElevatedButton(
+                  // Giriş Yap butonu
+                  _buildButton(
+                    context: context,
+                    label: AppStrings().login,
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');
                     },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 50,
-                        vertical: 15,
-                      ),
-                      foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(
-                      AppStrings().login,
-                      style: const TextStyle(fontSize: 18),
-                    ),
+                    isOutlined: false,
                   ),
                   const SizedBox(height: 20),
 
                   // Kayıt Ol butonu
-                  OutlinedButton(
+                  _buildButton(
+                    context: context,
+                    label: AppStrings().register,
                     onPressed: () {
                       Navigator.pushNamed(context, '/register');
                     },
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 50,
-                        vertical: 15,
-                      ),
-                      side: const BorderSide(color: Colors.white, width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(
-                      AppStrings().register,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
+                    isOutlined: true,
                   ),
                 ],
               ),
@@ -107,5 +79,46 @@ class WelcomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildButton({
+    required BuildContext context,
+    required String label,
+    required VoidCallback onPressed,
+    required bool isOutlined,
+  }) {
+    final buttonStyle = ElevatedButton.styleFrom(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 50,
+        vertical: 15,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    );
+
+    return isOutlined
+        ? OutlinedButton(
+            onPressed: onPressed,
+            style: buttonStyle.copyWith(
+              side: WidgetStateProperty.all(
+                const BorderSide(color: Colors.white, width: 2),
+              ),
+            ),
+            child: Text(
+              label,
+              style: const TextStyle(fontSize: 18, color: Colors.white),
+            ),
+          )
+        : ElevatedButton(
+            onPressed: onPressed,
+            style: buttonStyle.copyWith(
+              foregroundColor: WidgetStateProperty.all(Colors.black),
+            ),
+            child: Text(
+              label,
+              style: const TextStyle(fontSize: 18),
+            ),
+          );
   }
 }

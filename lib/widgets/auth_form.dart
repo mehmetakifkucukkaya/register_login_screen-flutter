@@ -37,13 +37,15 @@ class AuthForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  title!,
+                  //* title null ise boş bir string dönüdüyprz
+                  title ?? '',
                   style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: Colors.green,
                   ),
                 ),
+
                 const SizedBox(height: 40),
                 const EmailField(
                   validator: AuthValidator.validateEmail,
