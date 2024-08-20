@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_signup/constants/app_strings.dart';
+import 'package:login_signup/core/constants/app_strings.dart';
+import 'package:login_signup/widgets/backgrond_image.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -14,12 +15,7 @@ class WelcomePage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          Image.asset(
-            'assets/images/logo.jpg',
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
+          const BackgrondImage(),
           Container(
             width: double.infinity,
             height: double.infinity,
