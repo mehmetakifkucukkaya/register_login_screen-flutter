@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_signup/core/constants/app_strings.dart';
+import 'package:login_signup/core/validators/auth_validator.dart';
 import 'package:login_signup/widgets/backgrond_image.dart';
 import 'package:login_signup/widgets/email_field.dart';
 import 'package:login_signup/widgets/password_field.dart';
@@ -13,7 +14,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-
   bool _isRememberMeChecked = false;
 
   @override
@@ -72,9 +72,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                const EmailField(),
+                const EmailField(
+                  validator: AuthValidator.validateEmail,
+                ),
                 const SizedBox(height: 14),
-                const PasswordField(),
+                const PasswordField(
+                  validator: AuthValidator.validatePassword,
+                ),
                 const SizedBox(height: 25),
                 _buildRememberMeAndForgotPassword(),
                 const SizedBox(height: 20),
@@ -91,7 +95,6 @@ class _LoginPageState extends State<LoginPage> {
     return Row(
       children: [
         Checkbox(
-          activeColor: Colors.green,
           value: _isRememberMeChecked,
           onChanged: (bool? value) {
             setState(() {
@@ -122,7 +125,16 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildLoginButton() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        // Form doğrulama işlemi
+        if (_formKey.currentState?.validate() ?? false) {
+          // Doğrulama başarılı, giriş işlemini gerçekleştir
+          // Buraya giriş işlemleri kodunu ekleyebilirsiniz
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Giriş başarılı!')),
+          );
+        }
+      },
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(
           horizontal: 50,

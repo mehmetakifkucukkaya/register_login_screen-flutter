@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_signup/pages/login_page.dart';
+import 'package:login_signup/pages/splash_screen.dart';
+import 'package:login_signup/pages/welcome_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,10 +14,10 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const LoginPage(),
-        // '/': (context) => const SplashScreen(),
-        // '/welcome': (context) => const WelcomePage(),
-        // '/login': (context) => const LoginPage(),
+        // '/': (context) => const LoginPage(),
+        '/': (context) => const SplashScreen(),
+        '/welcome': (context) => const WelcomePage(),
+        '/login': (context) => const LoginPage(),
       },
     );
   }

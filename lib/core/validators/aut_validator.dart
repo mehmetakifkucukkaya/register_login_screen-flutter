@@ -1,1 +1,0 @@
-//* Validatoin işlemleri yapılacak

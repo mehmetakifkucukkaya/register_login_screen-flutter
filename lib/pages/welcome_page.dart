@@ -52,12 +52,14 @@ class WelcomePage extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 40),
-//* Butonlar
-                  //Todo: Butonların navigate işlemi yapılacak
+
+                  //* Butonlar
 
                   // Giriş Yap  butonu
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 50,
@@ -77,7 +79,9 @@ class WelcomePage extends StatelessWidget {
 
                   // Kayıt Ol butonu
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigator.pushNamed(context, '/register');
+                    },
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 50,
