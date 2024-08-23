@@ -52,6 +52,8 @@ class _RegisterPageState extends State<RegisterPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Kayıt başarılı!')),
           );
+
+          Navigator.pushNamed(context, '/login');
         }
       },
       style: ElevatedButton.styleFrom(

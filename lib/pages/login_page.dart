@@ -74,6 +74,8 @@ class _LoginPageState extends State<LoginPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Giriş başarılı!')),
           );
+
+          Navigator.pushNamed(context, '/home');
         }
       },
       style: ElevatedButton.styleFrom(
